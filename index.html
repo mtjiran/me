@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | mtjiran</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Geanimeerde gradiënt kleuren */
+            --bg-gradient: linear-gradient(-45deg, #1a2a6c, #b21f1f, #fdbb2d, #23a6d5, #23d5ab);
+        }
+        
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-gradient);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            min-height: 100vh;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+
+        /* Achtergrond animatie */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            text-align: center;
+            padding: 2rem;
+            max-width: 1200px;
+            width: 100%;
+            box-sizing: border-box;
+            z-index: 10;
+        }
+
+        header h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 4px 10px rgba(0,0,0,0.3);
+            letter-spacing: -1px;
+        }
+
+        header p {
+            font-size: 1.3rem;
+            font-weight: 300;
+            margin-bottom: 4rem;
+            opacity: 0.9;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        /* Glazen kaarten (Glassmorphism) */
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-decoration: none;
+            color: white;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Zweef-effect voor de kaarten */
+        .card:hover {
+            transform: translateY(-15px) scale(1.03);
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+        }
+
+        /* Glans-animatie over de kaart bij hover */
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-25deg);
+            transition: all 0.7s ease;
+        }
+
+        .card:hover::after {
+            left: 150%;
+        }
+
+        .icon {
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover .icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .card h2 {
+            font-size: 1.8rem;
+            margin: 0 0 1rem 0;
+            font-weight: 600;
+        }
+
+        .card p {
+            font-size: 1.05rem;
+            font-weight: 300;
+            margin: 0;
+            line-height: 1.6;
+            opacity: 0.85;
+        }
+
+        /* Responsief maken voor mobiel */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.8rem;
+            }
+            .container {
+                padding: 1.5rem;
+            }
+            .grid {
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Mijn Projecten</h1>
+            <p>Welkom op mijn portfolio. Klik op een kaart om het project te bekijken.</p>
+        </header>
+        
+        <div class="grid">
+            <a href="https://mtjiran.github.io/Cashflow-Champions/" class="card" target="_blank">
+                <div class="icon">💰</div>
+                <h2>Cashflow Champions</h2>
+                <p>Beheer je inkomsten, versla de markt en word een ware kampioen in cashflow.</p>
+            </a>
+
+            <a href="https://mtjiran.github.io/Hamburg/" class="card" target="_blank">
+                <div class="icon">⚓</div>
+                <h2>Hamburg</h2>
+                <p>Ontdek de indrukwekkende haven, rijke cultuur en prachtige architectuur van Hamburg.</p>
+            </a>
+
+            <a href="https://mtjiran.github.io/Rome/" class="card" target="_blank">
+                <div class="icon">🏛️</div>
+                <h2>Rome</h2>
+                <p>Een digitale reis naar de eeuwige stad, rijk aan fascinerende geschiedenis en monumenten.</p>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
