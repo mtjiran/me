@@ -3,177 +3,213 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | mtjiran</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <title>MTJIRAN | Digital Experiences</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Geanimeerde gradiënt kleuren */
-            --bg-gradient: linear-gradient(-45deg, #1a2a6c, #b21f1f, #fdbb2d, #23a6d5, #23d5ab);
+            --neon-blue: #00f2ff;
+            --neon-purple: #bc13fe;
+            --dark-bg: #050505;
         }
-        
+
         body, html {
             margin: 0;
             padding: 0;
-            font-family: 'Poppins', sans-serif;
-            background: var(--bg-gradient);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            min-height: 100vh;
-            color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            background-color: var(--dark-bg);
+            color: white;
+            font-family: 'Outfit', sans-serif;
             overflow-x: hidden;
         }
 
-        /* Achtergrond animatie */
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        /* Abstracte geanimeerde achtergrond */
+        .bg-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(188, 19, 254, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(0, 242, 255, 0.15) 0%, transparent 40%);
+            z-index: -1;
         }
 
-        .container {
-            text-align: center;
-            padding: 2rem;
-            max-width: 1200px;
-            width: 100%;
-            box-sizing: border-box;
-            z-index: 10;
-        }
-
-        header h1 {
-            font-size: 4rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-            text-shadow: 2px 4px 10px rgba(0,0,0,0.3);
-            letter-spacing: -1px;
-        }
-
-        header p {
-            font-size: 1.3rem;
-            font-weight: 300;
-            margin-bottom: 4rem;
-            opacity: 0.9;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-        }
-
-        /* Glazen kaarten (Glassmorphism) */
-        .card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            padding: 3rem 2rem;
-            text-decoration: none;
-            color: white;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        .hero {
+            height: 40vh;
             display: flex;
             flex-direction: column;
+            justify-content: center;
             align-items: center;
-            position: relative;
-            overflow: hidden;
+            text-align: center;
         }
 
-        /* Zweef-effect voor de kaarten */
-        .card:hover {
-            transform: translateY(-15px) scale(1.03);
-            background: rgba(255, 255, 255, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
-        }
-
-        /* Glans-animatie over de kaart bij hover */
-        .card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 50%;
-            height: 100%;
-            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
-            transform: skewX(-25deg);
-            transition: all 0.7s ease;
-        }
-
-        .card:hover::after {
-            left: 150%;
-        }
-
-        .icon {
-            font-size: 4.5rem;
-            margin-bottom: 1.5rem;
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));
-            transition: transform 0.3s ease;
-        }
-
-        .card:hover .icon {
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        .card h2 {
-            font-size: 1.8rem;
-            margin: 0 0 1rem 0;
-            font-weight: 600;
-        }
-
-        .card p {
-            font-size: 1.05rem;
-            font-weight: 300;
+        .hero h1 {
+            font-family: 'Syncopate', sans-serif;
+            font-size: clamp(2rem, 10vw, 5rem);
             margin: 0;
-            line-height: 1.6;
-            opacity: 0.85;
+            text-transform: uppercase;
+            letter-spacing: 10px;
+            background: linear-gradient(to right, var(--neon-blue), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        /* Responsief maken voor mobiel */
+        .hero p {
+            color: #888;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+
+        .main-hub {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .project-card {
+            position: relative;
+            height: 500px;
+            border-radius: 30px;
+            overflow: hidden;
+            text-decoration: none;
+            color: white;
+            transition: transform 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .project-card:hover {
+            transform: scale(1.02);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Specifieke card backgrounds */
+        .card-racing { background: linear-gradient(135deg, #1a1a1a 0%, #000 100%); }
+        .card-rome { background: linear-gradient(135deg, #2c1e1e 0%, #000 100%); }
+        .card-hamburg { background: linear-gradient(135deg, #1e252c 0%, #000 100%); }
+
+        .card-content {
+            padding: 40px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 20%, transparent 100%);
+            z-index: 2;
+            position: relative;
+        }
+
+        .status-tag {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid currentColor;
+        }
+
+        .tag-racing { color: #00ff88; }
+        .tag-travel { color: #ffcc00; }
+
+        .project-card h2 {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 1.8rem;
+            margin: 0 0 15px 0;
+        }
+
+        .project-card p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #ccc;
+            margin-bottom: 20px;
+        }
+
+        .stats-preview {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-value { font-weight: bold; font-size: 1.1rem; color: #fff; }
+        .stat-label { font-size: 0.7rem; color: #666; text-transform: uppercase; }
+
+        /* De "Glitch" animatie voor titels */
+        .project-card:hover h2 {
+            text-shadow: 2px 0 var(--neon-blue), -2px 0 var(--neon-purple);
+        }
+
         @media (max-width: 768px) {
-            header h1 {
-                font-size: 2.8rem;
-            }
-            .container {
-                padding: 1.5rem;
-            }
-            .grid {
-                gap: 1.5rem;
-            }
+            .main-hub { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 3rem; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Mijn Projecten</h1>
-            <p>Welkom op mijn portfolio. Klik op een kaart om het project te bekijken.</p>
-        </header>
-        
-        <div class="grid">
-            <a href="https://mtjiran.github.io/Cashflow-Champions/" class="card" target="_blank">
-                <div class="icon">💰</div>
-                <h2>Cashflow Champions</h2>
-                <p>Beheer je inkomsten, versla de markt en word een ware kampioen in cashflow.</p>
-            </a>
 
-            <a href="https://mtjiran.github.io/Hamburg/" class="card" target="_blank">
-                <div class="icon">⚓</div>
-                <h2>Hamburg</h2>
-                <p>Ontdek de indrukwekkende haven, rijke cultuur en prachtige architectuur van Hamburg.</p>
-            </a>
+<div class="bg-overlay"></div>
 
-            <a href="https://mtjiran.github.io/Rome/" class="card" target="_blank">
-                <div class="icon">🏛️</div>
-                <h2>Rome</h2>
-                <p>Een digitale reis naar de eeuwige stad, rijk aan fascinerende geschiedenis en monumenten.</p>
-            </a>
+<div class="hero">
+    <h1>MTJIRAN</h1>
+    <p>Data Feeds • Travel Guides • Digital Hub</p>
+</div>
+
+<main class="main-hub">
+    
+    <!-- Cashflow Champions -->
+    <a href="https://mtjiran.github.io/Cashflow-Champions/" class="project-card card-racing" target="_blank">
+        <div class="status-tag tag-racing">Live Data Feed</div>
+        <div class="card-content">
+            <h2>Cashflow Champions</h2>
+            <p>Het ultieme racing league dashboard. Real-time standings, Paddock Data feeds en performance-tracking van Vonck Racing tot Mtjiran.</p>
+            <div class="stats-preview">
+                <div class="stat-item"><span class="stat-value">Ronde 3</span><span class="stat-label">Status</span></div>
+                <div class="stat-item"><span class="stat-value">623 PTS</span><span class="stat-label">P1 Leader</span></div>
+                <div class="stat-item"><span class="stat-value">PRO</span><span class="stat-label">Engine Mode</span></div>
+            </div>
         </div>
-    </div>
+    </a>
+
+    <!-- Rome -->
+    <a href="https://mtjiran.github.io/Rome/" class="project-card card-rome" target="_blank">
+        <div class="status-tag tag-travel">Itinerary 2026</div>
+        <div class="card-content">
+            <h2>Rome: Eternal City</h2>
+            <p>Een meeslepende reisgids van 29 april tot 5 mei. Inclusief audio-tours, gladiator-training schema's en verborgen Renaissance parels.</p>
+            <div class="stats-preview">
+                <div class="stat-item"><span class="stat-value">7 Dagen</span><span class="stat-label">Duur</span></div>
+                <div class="stat-item"><span class="stat-value">Audio</span><span class="stat-label">Guided</span></div>
+                <div class="stat-item"><span class="stat-value">20k+</span><span class="stat-label">Artworks</span></div>
+            </div>
+        </div>
+    </a>
+
+    <!-- Hamburg -->
+    <a href="https://mtjiran.github.io/Hamburg/" class="project-card card-hamburg" target="_blank">
+        <div class="status-tag tag-travel">Insider Guide</div>
+        <div class="card-content">
+            <h2>Hamburg: Port City</h2>
+            <p>Verken de havenstad van de Speicherstadt tot de Reeperbahn. Een diepe duik in bunker-historie, architectuur en de legendarische Fischmarkt.</p>
+            <div class="stats-preview">
+                <div class="stat-item"><span class="stat-value">Apr '26</span><span class="stat-label">Planning</span></div>
+                <div class="stat-item"><span class="stat-value">Urban</span><span class="stat-label">Vibe</span></div>
+                <div class="stat-item"><span class="stat-value">21:00</span><span class="stat-label">Verrassing</span></div>
+            </div>
+        </div>
+    </a>
+
+</main>
+
 </body>
 </html>
